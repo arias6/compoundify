@@ -1,103 +1,115 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { texts } from "@/data/texts";
+import CompoundCalculator from "@/features/Compound/CompoundCalculator";
+import Hero from "@/features/home/Hero";
+import { useLanguageStore } from "@/store/useLanguageStore";
+import { Info } from "lucide-react";
+import Link from "next/link";
+import { useRef } from "react";
+
+export default function HomePage() {
+  const { lang, dir } = useLanguageStore();
+  const isRTL = dir === "rtl";
+  const Compound = texts.calculator[lang];
+  const loan = texts.loanCalculator[lang];
+  const common = texts.common[lang];
+
+  const calculatorRef = useRef<HTMLDivElement>(null);
+
+  const scrollToCalculator = () => {
+    if (calculatorRef.current) {
+      calculatorRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+  };
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div dir={dir}
+      className={`animate-in fade-in duration-1000 ${isRTL ? 'font-fa' : 'font-en'}`}
+    >
+      <Hero scrollToCalculator={scrollToCalculator} />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      <div ref={calculatorRef}>
+        <CompoundCalculator />
+      </div>
+
+      <section className="mx-auto max-w-7xl my-16">
+        <div className="rounded-3xl space-y-4 bg-brand-main p-12 text-center text-white shadow-2xl shadow-brand-main/40 relative overflow-hidden">
+          <div className="space-y-4">
+            <div className="bg-bg-card p-8 rounded-3xl border border-field-border">
+              <h3 className="text-xl font-bold text-text-title mb-4 flex items-center gap-2">
+                <Info className="text-brand-main" />
+                {Compound.theoryTitle}
+              </h3>
+              <div className="flex justify-center items-center gap-4 text-2xl bg-bg-soft font-bold text-brand-main p-6 rounded-2xl text-center mb-4">
+                <span>
+                  {Compound.theoryFormulaTop}
+                </span>
+                <span>=</span>
+                [
+                <span>
+                  {Compound.theoryFormulaMid}
+                </span>
+                <span>+</span>
+                <span>
+                  {Compound.theoryFormulaMon}
+                </span>
+                ]
+                <span>x</span>
+                <span>
+                  {Compound.theoryFormulabot}
+                </span>
+              </div>
+              <p className="text-sm text-text-body leading-relaxed opacity-70">
+                سود مرکب به زبانی ساده یعنی سودِ رویِ سود. برخلاف سود ساده که فقط به مبلغ اولیه تعلق می‌گیرد.
+              </p>
+            </div>
+            <Link href="/compound">
+              <button className="bg-white cursor-pointer text-brand-main px-10 py-4 rounded-2xl font-black text-sm hover:bg-brand-soft transition-all active:scale-95 shadow-xl">
+                {common.startFree}
+              </button>
+            </Link>
+          </div>
+          <div className="space-y-4">
+            <div className="bg-bg-card p-8 rounded-3xl border border-field-border">
+              <h3 className="text-xl font-bold text-text-title mb-4 flex items-center gap-2">
+                <Info className="text-brand-main" />
+                {loan.theoryTitle}
+              </h3>
+              <div className="flex flex-wrap justify-center items-center gap-4 text-xl md:text-2xl bg-bg-soft font-bold text-brand-main p-6 rounded-2xl text-center mb-4">
+                <span>
+                  {loan.theoryFormulaTop}
+                </span>
+                <span>=</span>
+                <div className="flex items-center gap-2 border-x border-brand-main/20 px-4">
+                  <span>
+                    {loan.theoryFormulaMid}
+                  </span>
+                  <span>+</span>
+                  <span>
+                    {loan.theoryFormulaMon}
+                  </span>
+                </div>
+                <span>÷</span>
+                <span>
+                  {loan.theoryFormulabot}
+                </span>
+              </div>
+              <p className="text-sm text-text-body leading-relaxed opacity-70">
+                {loan.theoryDesc}
+              </p>
+            </div>
+            <Link href="/oan-calculator">
+              <button className="bg-white cursor-pointer text-brand-main px-10 py-4 rounded-2xl font-black text-sm hover:bg-brand-soft transition-all active:scale-95 shadow-xl">
+                  {common.startFree}
+              </button>
+            </Link>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
     </div>
   );
 }

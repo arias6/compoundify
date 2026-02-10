@@ -1,26 +1,70 @@
 @import "tailwindcss";
 
+@theme {
+  --color-bg-main: #f9fafb;
+  --color-bg-card: #ffffff;
+  --color-bg-soft: #f1f5f9;
+  --color-bg-muted: #eef2f6;
+
+  --color-text-title: #0f172a;
+  --color-text-body: #334155;
+  --color-text-muted: #64748b;
+  --color-text-placeholder: #94a3b8;
+
+  --color-brand-main: #fe4066;
+  --color-brand-hover: #ff5c7e;
+  --color-brand-soft: #fff1f3;
+  --color-brand-soft-hover: #ffe4e8;
+
+  --color-field-border: #e2e8f0;
+  --color-field-hover: #cbd5e1;
+  --color-field-focus: #fe4066;
+
+  --color-error: #ef4444;
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-bg-main: #f9fafb;
+  --color-bg-card: #ffffff;
+  --color-bg-soft: #f1f5f9;
+  --color-bg-muted: #eef2f6;
+
+  --color-text-title: #0f172a;
+  --color-text-body: #334155;
+  --color-text-muted: #64748b;
+  --color-text-placeholder: #94a3b8;
+
+  --color-brand-main: #fe4066;
+  --color-brand-hover: #ff5c7e;
+  --color-brand-soft: #fff1f3;
+  --color-brand-soft-hover: #ffe4e8;
+
+  --color-field-border: #e2e8f0;
+  --color-field-hover: #cbd5e1;
+  --color-field-focus: #fe4066;
+
+  --color-error: #ef4444;
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+
+  /* fonrs - fa - en  */
+  --font-fa: "Estedad", sans-serif;
+  --font-en: "Inter", sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    background-color: var(--color-bg-main);
+    color: var(--color-text-body);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.font-fa {
+  font-family: var(--font-fa), sans-serif;
 }
+.font-en {
+  font-family: var(--font-en), sans-serif;
+}
+
