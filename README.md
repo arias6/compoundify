@@ -1,161 +1,85 @@
-### 💰 Compoundify
-Make financial calculations simple and interactive for everyone.
+# 💰 Compoundify
 
-A lightweight, frontend-only financial tools website supporting Persian and English.
-Compoundify provides users with four essential financial calculators to make informed decisions quickly:
+A lightweight, frontend-only financial toolkit for making financial calculations simple and interactive — for everyone. Supports **English** and **Persian (RTL)**.
 
-Compound Interest Calculator
+Compoundify provides four essential financial calculators to help users make informed decisions quickly:
 
-Bank Loan Calculator
+- **Compound Interest Calculator** — future value of investments over time, detailed tables, interactive charts
+- **Bank Loan Calculator** — monthly installments, total repayment, and a full repayment schedule
+- **Bank Loan Comparison Tool** — compare multiple loans side by side
+- **Income Tax Calculator** — income tax based on Iranian tax rules, with salary breakdown and deductions
 
-Bank Loan Comparison Tool
+All calculations run entirely **on the client side** — no backend, no API calls, instant results.
 
-Income Tax Calculator
+---
 
-All calculations are performed on the client side, giving users fast and interactive results without relying on a backend.
+## 🚀 Getting Started
 
-### ✨ Overview
+### Option 1: Docker (recommended)
 
-Compoundify is a modern financial toolkit designed to simplify complex financial calculations for individuals and businesses.
-It provides a user-friendly interface to calculate compound interest, loans, compare banking options, and compute income taxes.
-
-The core goal of this project is to give users a clear, interactive understanding of their financial data, entirely on the client side, without any backend dependency.
-
-### 🧠 What This App Does
-
-Calculates compound interest for various investment periods
-
-Computes bank loan installments and total repayment
-
-Compares multiple bank loans side by side
-
-Calculates income tax based on Iranian law
-
-Displays results instantly in tables and charts
-
-Supports both Persian (RTL) and English (LTR) layouts
-
-### 🏠 Main Features
-
-💹 Compound Interest Calculator
-
-Calculates future value of investments over time
-
-Displays detailed tables with amounts and percentages
-
-Visualizes growth using interactive charts
-
-Supports different interest rates and periods
-
-### 🏦 Bank Loan Calculator
-
-Calculates monthly installments and total repayment
-
-Supports various interest rates and repayment periods
-
-Provides a clear repayment schedule table
-
-### 🔍 Bank Loan Comparison Tool
-
-Compares multiple loans at once
-
-Highlights differences in interest, monthly payments, and total repayment
-
-Provides visual charts for easier comparison
-
-### 💵 Income Tax Calculator
-
-Calculates income tax based on Iranian tax rules
-
-Displays salary breakdown, deductions, and tax
-
-Results shown in readable tables
-
-### 🧩 Data Handling
-
-All calculations are performed on the client side
-
-No API calls required
-
-Inputs validated using Zod
-
-Results update instantly as the user types
-
-Charts rendered with ECharts
-
-Icons provided by Lucide React
-
-### 🛠 Technical Highlights
-
-Frontend-only architecture
-
-Next.js 15 (App Router) for routing
-
-Tailwind CSS v4 for styling
-
-Zustand for state management
-
-Fully responsive layout for desktop, tablet, and mobile
-
-Language toggle for Persian and English
-
-### Tech Stack
-
-Framework: Next.js 15 (App Router)
-
-Language: TypeScript
-
-Styling: Tailwind CSS v4
-
-State Management: Zustand
-
-Icons: Lucide React
-
-Charts: ECharts
-
-### Frontend
-
-Next.js 15
-
-React 19
-
-TypeScript
-
-Tailwind CSS v4
-
-Zustand
-
-Lucide Icons
-
-### Tooling
-
-ESLint
-
-PostCSS
-
-Node.js
-
-# Install dependencies
 ```bash
-npm install
+# Build the image
+docker build -t compoundify .
+
+# Run the container
+docker run -p 3000:3000 compoundify
 ```
 
-# Run development server
+Then open http://localhost:3000.
+
+### Option 2: Local development
+
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
 ```
 
-# Open browser
+Open http://localhost:3000 in your browser.
+
+### Production build (local)
+
 ```bash
-http://localhost:3000
+npm run build     # Build for production
+npm run start     # Start production server
 ```
 
-# Build for production
-```bash
-npm run build
-```
+---
 
-# Start production server
-```bash
-npm run start
-```
+## ✨ Features
+
+- 💹 Compound interest calculator with growth visualization
+- 🏦 Bank loan calculator with repayment schedule tables
+- 🔍 Side-by-side bank loan comparison with charts
+- 💵 Income tax calculator based on Iranian tax rules
+- 🧩 Zod-validated inputs with instant results as you type
+- 📊 Charts rendered with ECharts
+- 🌐 Persian (RTL) and English (LTR) layouts with a language toggle
+- 📱 Fully responsive — desktop, tablet, and mobile
+
+---
+
+## 🛠 Tech Stack
+
+| Category           | Technology                            |
+| ------------------ | ------------------------------------- |
+| Framework          | Next.js 15 (App Router)               |
+| Language           | TypeScript                            |
+| Frontend           | React 19                              |
+| Styling            | Tailwind CSS v4                       |
+| State Management   | Zustand                               |
+| Charts             | ECharts                               |
+| Icons              | Lucide React                          |
+| Validation         | Zod                                   |
+| Linting            | ESLint                                |
+| Containerization   | Docker (multi-stage build)            |
+
+---
+
+## 🧠 Architecture
+
+- **100% frontend** — no backend, no API calls, no server-side persistent state
+- **Client-side calculations** — inputs validated with Zod and recalculated instantly
+- **Standalone Next.js output** — optimized for production in Docker
